@@ -37,11 +37,12 @@ class PasosRecetaController extends Controller
     {
         $paso = PasosRecetas::find($id);
 
-        Gate::authorize('validateUser',  [$paso->recetas, $paso->recetas->user]);
         if (!$paso) {
 
             return response()->json(['error' => 'El paso no fue encontrado'], 404);
         }
+
+        Gate::authorize('validateUser',  [$paso->recetas, $paso->recetas->user]);
 
         $paso->update($request->all());
 
@@ -53,12 +54,17 @@ class PasosRecetaController extends Controller
      */
     public function destroy(string $id)
     {
-        $paso = PasosRecetas::find($id)->delete();
+        $paso = PasosRecetas::find($id);
+
 
         if (!$paso) {
 
             return response()->json(['error' => 'El paso no fue encontrado'], 404);
         }
+
+        Gate::authorize('validateUser',  [$paso->recetas, $paso->recetas->user]);
+
+        $paso->delete();
 
         return response()->json(['message' => 'deleted'], 204);
     }
