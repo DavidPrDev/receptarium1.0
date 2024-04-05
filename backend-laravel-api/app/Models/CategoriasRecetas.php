@@ -9,8 +9,9 @@ class CategoriasRecetas extends Model
 {
     use HasFactory;
 
-    public function receta()
+
+    public function recetas()
     {
-        return $this->hasOne(Recetas::class, 'categorias_recetas_id');
+        return $this->hasMany(Recetas::class, 'categorias_recetas_id');
     }
 }

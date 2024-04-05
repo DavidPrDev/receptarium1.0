@@ -5,10 +5,41 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RecetaRequest;
 use App\Models\Recetas;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class RecetaController extends Controller
 {
+
+    public function countRecetas(Request $request)
+    {
+        $user = $request->user();
+
+        $recetasPorCategoria = $user->recetas()
+            ->with('categoria:id,nombre')
+            ->select('categorias_recetas_id', DB::raw('COUNT(*) as cantidad_recetas'))
+            ->groupBy('categorias_recetas_id')
+            ->get();
+
+        $formattedResults = $recetasPorCategoria->map(function ($item) {
+            return [
+                'categoria_id' => $item->categoria->id,
+                'nombre_categoria' => $item->categoria->nombre,
+                'cantidad_recetas' => $item->cantidad_recetas,
+            ];
+        });
+
+        return response()->json($formattedResults, 200);
+    }
+    public function recetasEnCategoria(Request $request, $categoria_id)
+    {
+        if (!$categoria_id) {
+            return response()->json(['error' => 'El parámetro categoria_id es obligatorio.'], 400);
+        }
+
+        $recetas = $request->user()->recetas()->where('categorias_recetas_id', $categoria_id)->get();
+
+        return response()->json($recetas, 200);
+    }
 
     public function store(RecetaRequest $request)
     {

@@ -29,6 +29,7 @@ class Recetas extends Model
     {
         return $this->belongsTo(CategoriasRecetas::class, 'categorias_recetas_id');
     }
+
     public function pasosRecetas()
     {
         return $this->hasMany(PasosRecetas::class);
