@@ -6,6 +6,7 @@ use App\Http\Requests\PasosRecetaRequest;
 use App\Models\PasosRecetas;
 use App\Models\Recetas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PasosRecetaController extends Controller
 {
@@ -23,6 +24,7 @@ class PasosRecetaController extends Controller
     public function show(string $id)
     {
         $receta = Recetas::find($id);
+        Gate::authorize('validateUser',  $receta, $receta->user);
         $pasos = $receta->pasosRecetas;
         return response()->json($pasos);
     }
@@ -35,6 +37,7 @@ class PasosRecetaController extends Controller
     {
         $paso = PasosRecetas::find($id);
 
+        Gate::authorize('validateUser',  [$paso->recetas, $paso->recetas->user]);
         if (!$paso) {
 
             return response()->json(['error' => 'El paso no fue encontrado'], 404);

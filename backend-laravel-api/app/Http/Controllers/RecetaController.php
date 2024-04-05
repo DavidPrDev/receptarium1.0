@@ -6,6 +6,7 @@ use App\Http\Requests\RecetaRequest;
 use App\Models\Recetas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class RecetaController extends Controller
 {
@@ -44,7 +45,6 @@ class RecetaController extends Controller
     public function store(RecetaRequest $request)
     {
         $usuario = $request->user();
-
         $nuevaReceta = Recetas::create([
             'titulo' => $request->titulo,
             'ingredientes' => $request->ingredientes,
@@ -67,6 +67,8 @@ class RecetaController extends Controller
     {
         $receta = Recetas::find($id);
 
+        Gate::authorize('validateUser',  $receta, $receta->user);
+
         if (!$receta) {
 
             return response()->json(['error' => 'La receta no fue encontrado'], 404);
@@ -82,7 +84,7 @@ class RecetaController extends Controller
     public function update(RecetaRequest $request, string $id)
     {
         $receta = Recetas::find($id);
-
+        Gate::authorize('validateUser',  $receta, $receta->user);
         $receta->update($request->all());
 
         return response()->json([
@@ -96,7 +98,11 @@ class RecetaController extends Controller
      */
     public function destroy(string $id)
     {
-        Recetas::find($id)->delete();
+        $receta = Recetas::find($id);
+
+        Gate::authorize('validateUser',  $receta, $receta->user);
+
+        $receta->delete();
 
         return response()->json([
             'status' => 'ok',

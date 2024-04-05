@@ -57,7 +57,7 @@ class User extends Authenticatable
     public function categoriasRecetas(): HasManyThrough
     {
         return $this->hasManyThrough(
-            CategoriaRecetas::class,
+            CategoriasRecetas::class,
             Recetas::class,
             'user_id',
             'id',

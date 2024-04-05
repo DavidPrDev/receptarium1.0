@@ -16,8 +16,8 @@ class PasosRecetas extends Model
         'recetas_id'
     ];
 
-    public function receta()
+    public function recetas()
     {
-        return $this->belongsTo(Recetas::class);
+        return $this->belongsTo(Recetas::class, 'recetas_id');
     }
 }
