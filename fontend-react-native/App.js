@@ -56,8 +56,8 @@ const DrawerNavigator = () => {
           
         },
         drawerContentOptions: {
-          activeTintColor: 'red', // Cambia el color del botón de hamburguesa cuando está activo
-          inactiveTintColor: 'blue', // Cambia el color del botón de hamburguesa cuando está inactivo
+          activeTintColor: 'red', 
+          inactiveTintColor: 'blue',
         },
         headerTintColor: '#FFFFFF'
         
