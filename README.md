@@ -1,15 +1,12 @@
-
 <a name="readme-top"></a>
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/david-pérez-romero-b8a57a292/)
-
-
 
 <br />
 <div align="center">
   <a href="https://github.com/DavidPrDev/receptarium1.0">
     <img src="img/logo.png" alt="Logo" width="80" height="80">
   </a>
+
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/david-pérez-romero-b8a57a292/)
 
   <h3 align="center">Receptarium</h3>
 <p align="center">
