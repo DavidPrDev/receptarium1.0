@@ -27,10 +27,10 @@
     <li>
       <a href="#Empezando">Empezando</a>
       <ul>
-        <li><a href="#Prerrequisito">Prerrequisitos</a></li>
+        <li><a href="#Prerrequisitos">Prerrequisitos</a></li>
         <li><a href="#Backend"> Instalacion Backend </a>
             <ul> 
-                <li><a href="#Caracteristicas  Api">Caracteristicas</a></li>
+                <li><a href="#Caracteristicas Api">Caracteristicas</a></li>
                 <li><a href="#Documentación Swagger">Documentación Swagger</a></li>
             </ul>
         </li>
@@ -106,7 +106,8 @@ Para instalar el backend de laravel seguiremos estos pasos:
    php artisan db:seed
    ```
       <p align="right">(<a href="#readme-top">Volver al incio</a>)</p>
-## Caracteristicas  Api
+
+## Caracteristicas Api
 
 Algunas de las características más destacables de la api son :
  
