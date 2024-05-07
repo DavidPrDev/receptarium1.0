@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     marginLeft:20
     },
+    
     iconTitle:{
       width:40,
       height:40,
