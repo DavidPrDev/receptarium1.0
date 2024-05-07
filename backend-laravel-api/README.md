@@ -26,20 +26,20 @@
     <li>
       <a href="#Sobre el proyecto">Sobre el proyecto</a>
       <ul>
-        <li><a href="#built-with">Tecnologías</a></li>
+        <li><a href="#Tecnologías empleadas">Tecnologías</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Empezando</a>
+      <a href="#Empezando">Empezando</a>
       <ul>
-        <li><a href="#prerequisites">Prerrequisitos</a></li>
-        <li><a href="#installation">Backend</a>
+        <li><a href="#Prerrequisito">Prerrequisitos</a></li>
+        <li><a href="#Backend"> Instalacion Backend </a>
             <ul> 
-                <li><a href="#roadmap">Instalación</a></li>
-                <li><a href="#usage">Documentación Swagger</a></li>
+                <li><a href="#Caracteristicas  Api">Caracteristicas</a></li>
+                <li><a href="#Documentación Swagger">Documentación Swagger</a></li>
             </ul>
         </li>
-          <li><a href="#installation">Frontend</a>
+          <li><a href="#Instalación">Frontend</a>
             <ul> 
                 <li><a href="#roadmap">Instalación</a></li>
                 <li><a href="#usage">Documentación </a></li>
@@ -89,57 +89,49 @@ Para iniciar este proyecto necesitamos copiar el repositorio y instalar el backe
 
 ### Prerrequisitos
 
-This is an example of how to list things you need to use the software and how to install them.
+Empezaremos clonando el repositiorio .
 * clonar repositorio 
   ```sh
-  npm install npm@latest -g
+  git clone https://github.com/DavidPrDev/receptarium1.0.git
   ```
 
-### Installation
+### Backend
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+Para instalar el backend de laravel seguiremos estos pasos:
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Configurar el fichero .env con las credenciales de nuestra bd.
+
+2. Realizaremos las migraciones
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   php artisan migrate
    ```
-3. Install NPM packages
+   
+3. Poblaremos la bd con datos de prueba mediante seeders.
    ```sh
-   npm install
+   php artisan db:seed
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+      <p align="right">(<a href="#readme-top">Volver al incio</a>)</p>
+## Caracteristicas  Api
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Algunas de las características más destacables de la api son :
+ 
+ * Sanctum como Middleware.
 
+ * Custom request para los datos introducidos.
 
+ * Custom policy para autorizar el acceso a un recurso en particular.
 
-<!-- USAGE EXAMPLES -->
-## Usage
+  * Documentacion con swagger.
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">Volver al incio</a>)</p>
 
 
+## Documentación Swagger
 
-<!-- ROADMAP -->
-## Roadmap
+Puede consultar la documentación interactiva de swagger generada para este proyecto sobre los endpoint y esquemas sobre los  modelos.
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+<a href="https://api-receptarium.david-pr.com/api/documentation">Visita la documentacion de swagger </a>
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">Volver al incio</a>)</p>
 
