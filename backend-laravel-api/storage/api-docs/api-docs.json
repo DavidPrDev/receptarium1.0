@@ -1,11 +1,10 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Nombre de tu API",
-        "description": "Descripción de tu API",
+        "title": "Receptarium  API",
         "contact": {
-            "name": "Tu Nombre",
-            "email": "tu@email.com"
+            "name": "David Pérez Romero",
+            "email": "contacto@david-pr.com"
         },
         "license": {
             "name": "Licencia",
@@ -16,6 +15,9 @@
     "paths": {
         "/api/register": {
             "post": {
+                "tags": [
+                    "Auth Controller"
+                ],
                 "summary": "Register a new user",
                 "operationId": "8a56853624e025573120a09a4c75d468",
                 "requestBody": {
@@ -26,15 +28,15 @@
                                 "properties": {
                                     "name": {
                                         "type": "string",
-                                        "example": "John Doe"
+                                        "example": "test register"
                                     },
                                     "email": {
                                         "type": "string",
-                                        "example": "john@example.com"
+                                        "example": "register@example.com"
                                     },
                                     "password": {
                                         "type": "string",
-                                        "example": "password123"
+                                        "example": "123456789"
                                     }
                                 },
                                 "type": "object"
@@ -54,6 +56,9 @@
         },
         "/api/login": {
             "post": {
+                "tags": [
+                    "Auth Controller"
+                ],
                 "summary": "Authenticate user and generate JWT token",
                 "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
                 "requestBody": {
@@ -68,7 +73,7 @@
                                     },
                                     "password": {
                                         "type": "string",
-                                        "example": "password123"
+                                        "example": "123456789"
                                     }
                                 },
                                 "type": "object"
@@ -107,6 +112,9 @@
         },
         "/api/logout": {
             "post": {
+                "tags": [
+                    "Auth Controller"
+                ],
                 "summary": "Logout user and revoke all tokens",
                 "operationId": "fe8f3429cd6979b3b4517e186505f9f9",
                 "responses": {
@@ -123,9 +131,559 @@
                     }
                 ]
             }
+        },
+        "/api/pasos": {
+            "post": {
+                "tags": [
+                    "Pasos receta Controller"
+                ],
+                "summary": "Store a step",
+                "description": "Store a Step",
+                "operationId": "9b53110247a6ec5649c6dfc06c8d6d04",
+                "requestBody": {
+                    "description": "Step data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PasosRecetaRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Step stored",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/pasos/{id}": {
+            "get": {
+                "tags": [
+                    "Pasos receta Controller"
+                ],
+                "summary": "Show a step by ID",
+                "description": "Show step",
+                "operationId": "1e0ad8fd07e1fd641caa689c9d2f21f5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of step",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Step found"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Pasos receta Controller"
+                ],
+                "summary": "Update step",
+                "description": "Update  a step",
+                "operationId": "a945971b00f8b8eccf6af4b9211cc0d4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the step",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "step data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PasosRecetaRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Step stored",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Pasos receta Controller"
+                ],
+                "summary": "Delete a step by ID",
+                "description": "Delete a step",
+                "operationId": "979dd8be6eebde9740d877a9321f10ca",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the step",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "203": {
+                        "description": "Deleted recipe"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/recetas-categoria/{id}": {
+            "get": {
+                "tags": [
+                    "Receta Controller"
+                ],
+                "summary": "Show a recipe in categori",
+                "description": "Show a recipes in categories",
+                "operationId": "c9994c9f5f1f8df215509a08b2e1eeaa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the recipe",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": " recipes in categories"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/receta": {
+            "post": {
+                "tags": [
+                    "Receta Controller"
+                ],
+                "summary": "Store a recipe",
+                "description": "Store a recipe",
+                "operationId": "4b2d71645248f7dff1802c4c9aed1538",
+                "requestBody": {
+                    "description": "Recipe data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RecetaRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Recipe stored",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/receta/{id}": {
+            "get": {
+                "tags": [
+                    "Receta Controller"
+                ],
+                "summary": "Show a recipe by ID",
+                "description": "Show a recipe",
+                "operationId": "b2a7891649b5dc38718395c9012d0c0d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the recipe",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Recipe found"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Receta Controller"
+                ],
+                "summary": "Update recipe",
+                "description": "Update  recipe",
+                "operationId": "78be13e5a44ee0948463d97ae49cf701",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the recipe",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Recipe data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RecetaRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Recipe stored",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Receta Controller"
+                ],
+                "summary": "Delete a recipe by ID",
+                "description": "Delete a recipe",
+                "operationId": "ce10243da9ea4f715e3800e880f2060f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the recipe",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "203": {
+                        "description": "Deleted recipe"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
+        "schemas": {
+            "PasosRecetaRequest": {
+                "properties": {
+                    "titulo": {
+                        "type": "string",
+                        "example": "Paso 1"
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Descripcion del paso 1"
+                    },
+                    "recetas_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "ruta_imagen": {
+                        "type": "string",
+                        "example": "Ruta de la imagen , puede ser null"
+                    }
+                },
+                "type": "object"
+            },
+            "RecetaRequest": {
+                "properties": {
+                    "titulo": {
+                        "type": "string",
+                        "example": "Test receta"
+                    },
+                    "ingredientes": {
+                        "type": "string",
+                        "example": "ingrediente 1, ingrediente 2"
+                    },
+                    "tiempo_preparacion": {
+                        "type": "string",
+                        "example": "20 m"
+                    },
+                    "num_personas": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Descripcion de la receta"
+                    },
+                    "categorias_recetas_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "CategoriasRecetas": {
+                "title": "Categoria_recetas",
+                "description": "Modelo de categoria_recetas",
+                "properties": {
+                    "id": {
+                        "description": "ID de la categoria",
+                        "type": "integer"
+                    },
+                    "nombre": {
+                        "description": "Nombre de la categoria",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "PasosRecetas": {
+                "title": "Pasos_recetas",
+                "description": "Modelo de Pasos_recetas",
+                "properties": {
+                    "id": {
+                        "description": "ID de la receta",
+                        "type": "integer"
+                    },
+                    "titulo": {
+                        "description": "Título del paso",
+                        "type": "string"
+                    },
+                    "descripcion": {
+                        "description": "descripcion del paso",
+                        "type": "string"
+                    },
+                    "ruta_imagen": {
+                        "description": "ruta de la imagen del paso",
+                        "type": "string"
+                    },
+                    "recetas_id": {
+                        "description": "ID de la receta.",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Recetas": {
+                "title": "Receta",
+                "description": "Modelo de Receta",
+                "properties": {
+                    "id": {
+                        "description": "ID de la receta",
+                        "type": "integer"
+                    },
+                    "titulo": {
+                        "description": "Título de la receta",
+                        "type": "string"
+                    },
+                    "ingredientes": {
+                        "description": "Ingredientes de la receta",
+                        "type": "string"
+                    },
+                    "tiempo_preparacion": {
+                        "description": "Tiempo de preparación de la receta",
+                        "type": "string"
+                    },
+                    "num_personas": {
+                        "description": "Número de personas a las que sirve la receta",
+                        "type": "integer"
+                    },
+                    "descripcion": {
+                        "description": "Descripción de la receta",
+                        "type": "string"
+                    },
+                    "ruta_imagen_principal": {
+                        "description": "Ruta de la imagen principal de la receta",
+                        "type": "string"
+                    },
+                    "categorias_recetas_id": {
+                        "description": "ID de la categoría de la receta",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "description": "ID del usuario que creó la receta",
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación de la receta",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de última actualización de la receta",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User model",
+                "properties": {
+                    "id": {
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "description": "Name of the user",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email of the user",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",
@@ -135,5 +693,19 @@
                 "scheme": "bearer"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Auth Controller",
+            "description": "Endpoints related to authentication"
+        },
+        {
+            "name": "Pasos receta Controller",
+            "description": "Endpoints related to pasos receta controller"
+        },
+        {
+            "name": "Receta Controller",
+            "description": "Endpoints related to recipe controller"
+        }
+    ]
 }

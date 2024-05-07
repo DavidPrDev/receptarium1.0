@@ -11,6 +11,29 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\CategoriaRecetas;
 
+/**
+ * @OA\Schema(
+ *      schema="User",
+ *      title="User",
+ *      description="User model",
+ *      @OA\Property(
+ *          property="id",
+ *          type="integer",
+ *          format="int64",
+ *          description="ID"
+ *      ),
+ *      @OA\Property(
+ *          property="name",
+ *          type="string",
+ *          description="Name of the user"
+ *      ),
+ *      @OA\Property(
+ *          property="email",
+ *          type="string",
+ *          description="Email of the user"
+ *      )
+ * )
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;

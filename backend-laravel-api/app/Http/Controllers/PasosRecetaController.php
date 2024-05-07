@@ -8,8 +8,56 @@ use App\Models\Recetas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
+/**
+ * @OA\Tag(
+ *     name="Pasos receta Controller",
+ *     description="Endpoints related to pasos receta controller"
+ * )
+ * 
+ * @OA\Schema(
+ *     schema="PasosRecetaRequest",
+ *     @OA\Property(property="titulo", type="string", example="Paso 1"),
+ *     @OA\Property(property="descripcion", type="string", example="Descripcion del paso 1"),
+ *     @OA\Property(property="recetas_id", type="integer", example=1),
+ *     @OA\Property(property="ruta_imagen", type="string", example="Ruta de la imagen , puede ser null"),
+ * 
+ * )
+ */
+
 class PasosRecetaController extends Controller
 {
+
+
+    /**
+     * Store a Step
+     *
+     * @OA\Post(
+     *     path="/api/pasos",
+     *     summary="Store a step",
+     *     tags={"Pasos receta Controller"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Step data",
+     *         @OA\JsonContent(
+     *             ref="#/components/schemas/PasosRecetaRequest"  
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Step stored",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="status", type="string", example="ok")
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Error"
+     *     )
+     * )
+     * 
+     */
 
     public function store(PasosRecetaRequest $request)
     {
@@ -19,7 +67,34 @@ class PasosRecetaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show step
+     *
+     * @OA\Get(
+     *     path="/api/pasos/{id}",
+     *     summary="Show a step by ID",
+     *     tags={"Pasos receta Controller"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of step",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     * 
+     *     @OA\Response(
+     *         response=200,
+     *         description="Step found"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not found"
+     *     )
+     * )
+     * 
      */
     public function show(string $id)
     {
@@ -31,7 +106,44 @@ class PasosRecetaController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Update  a step
+     *
+     * @OA\Put(
+     *     path="/api/pasos/{id}",
+     *     summary="Update step",
+     *     tags={"Pasos receta Controller"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="step data",
+     *         @OA\JsonContent(
+     *             ref="#/components/schemas/PasosRecetaRequest"  
+     *         )
+     *     ),
+     *  @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the step",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Step stored",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="status", type="string", example="ok")
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Error"
+     *     )
+     * )
+     * 
      */
     public function update(PasosRecetaRequest $request, string $id)
     {
@@ -50,7 +162,34 @@ class PasosRecetaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a step
+     *
+     * @OA\Delete(
+     *     path="/api/pasos/{id}",
+     *     summary="Delete a step by ID",
+     *     tags={"Pasos receta Controller"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the step",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     * 
+     *     @OA\Response(
+     *         response=203,
+     *         description="Deleted recipe"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not found"
+     *     )
+     * )
+     * 
      */
     public function destroy(string $id)
     {
@@ -66,6 +205,6 @@ class PasosRecetaController extends Controller
 
         $paso->delete();
 
-        return response()->json(['message' => 'deleted'], 204);
+        return response()->json(['message' => 'deleted'], 203);
     }
 }

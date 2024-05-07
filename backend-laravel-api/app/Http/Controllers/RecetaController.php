@@ -8,6 +8,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
+/**
+ * @OA\Tag(
+ *     name="Receta Controller",
+ *     description="Endpoints related to recipe controller"
+ * )
+ * 
+ * @OA\Schema(
+ *     schema="RecetaRequest",
+ *     @OA\Property(property="titulo", type="string", example="Test receta"),
+ *     @OA\Property(property="ingredientes", type="string", example="ingrediente 1, ingrediente 2"),
+ *     @OA\Property(property="tiempo_preparacion", type="string", example="20 m"),
+ *     @OA\Property(property="num_personas", type="integer", example=1),
+ *     @OA\Property(property="descripcion", type="string", example="Descripcion de la receta"),
+ *     @OA\Property(property="categorias_recetas_id", type="integer", example=1),
+ *     @OA\Property(property="user_id", type="integer", example=1)
+ * )
+ */
+
+
 class RecetaController extends Controller
 {
 
@@ -31,6 +50,36 @@ class RecetaController extends Controller
 
         return response()->json($formattedResults, 200);
     }
+    /**
+     * Show a recipes in categories
+     *
+     * @OA\Get(
+     *     path="/api/recetas-categoria/{id}",
+     *     summary="Show a recipe in categori",
+     *     tags={"Receta Controller"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the recipe",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     * 
+     *     @OA\Response(
+     *         response=200,
+     *         description=" recipes in categories"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not found"
+     *     )
+     * )
+     * 
+     */
     public function recetasEnCategoria(Request $request, $categoria_id)
     {
         if (!$categoria_id) {
@@ -41,6 +90,37 @@ class RecetaController extends Controller
 
         return response()->json($recetas, 200);
     }
+    /**
+     * Store a recipe
+     *
+     * @OA\Post(
+     *     path="/api/receta",
+     *     summary="Store a recipe",
+     *     tags={"Receta Controller"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Recipe data",
+     *         @OA\JsonContent(
+     *             ref="#/components/schemas/RecetaRequest"  
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Recipe stored",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="status", type="string", example="ok")
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Error"
+     *     )
+     * )
+     * 
+     */
+
 
     public function store(RecetaRequest $request)
     {
@@ -61,7 +141,34 @@ class RecetaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show a recipe
+     *
+     * @OA\Get(
+     *     path="/api/receta/{id}",
+     *     summary="Show a recipe by ID",
+     *     tags={"Receta Controller"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the recipe",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     * 
+     *     @OA\Response(
+     *         response=200,
+     *         description="Recipe found"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not found"
+     *     )
+     * )
+     * 
      */
     public function show(string $id)
     {
@@ -77,10 +184,47 @@ class RecetaController extends Controller
         return response()->json($receta);
     }
 
-
     /**
-     * Update the specified resource in storage.
+     * Update  recipe
+     *
+     * @OA\Put(
+     *     path="/api/receta/{id}",
+     *     summary="Update recipe",
+     *     tags={"Receta Controller"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Recipe data",
+     *         @OA\JsonContent(
+     *             ref="#/components/schemas/RecetaRequest"  
+     *         )
+     *     ),
+     *  @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the recipe",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Recipe stored",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="status", type="string", example="ok")
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Error"
+     *     )
+     * )
+     * 
      */
+
     public function update(RecetaRequest $request, string $id)
     {
         $receta = Recetas::find($id);
@@ -94,7 +238,34 @@ class RecetaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a recipe
+     *
+     * @OA\Delete(
+     *     path="/api/receta/{id}",
+     *     summary="Delete a recipe by ID",
+     *     tags={"Receta Controller"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the recipe",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     * 
+     *     @OA\Response(
+     *         response=203,
+     *         description="Deleted recipe"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not found"
+     *     )
+     * )
+     * 
      */
     public function destroy(string $id)
     {
@@ -107,6 +278,6 @@ class RecetaController extends Controller
         return response()->json([
             'status' => 'ok',
             'message' => "Receta eliminada"
-        ], 200);
+        ], 203);
     }
 }

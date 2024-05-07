@@ -9,24 +9,34 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @OA\Tag(
+ *     name="Auth Controller",
+ *     description="Endpoints related to authentication"
+ * )
+ */
 
 class AuthController extends Controller
 {
+
     /**
+     * 
      * @OA\Post(
      *     path="/api/register",
      *     summary="Register a new user",
+     *      tags={"Auth Controller"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\MediaType(
      *             mediaType="multipart/form-data",
      *             @OA\Schema(
-     *                 @OA\Property(property="name", type="string", example="John Doe"),
-     *                 @OA\Property(property="email", type="string", example="john@example.com"),
-     *                 @OA\Property(property="password", type="string", example="password123"),
+     *                 @OA\Property(property="name", type="string", example="test register"),
+     *                 @OA\Property(property="email", type="string", example="register@example.com"),
+     *                 @OA\Property(property="password", type="string", example="123456789"),
      *             )
      *         )
      *     ),
+     * 
      *     @OA\Response(
      *         response="201",
      *         description="User registered successfully"
@@ -58,13 +68,14 @@ class AuthController extends Controller
      * @OA\Post(
      *     path="/api/login",
      *     summary="Authenticate user and generate JWT token",
+     *     tags={"Auth Controller"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\MediaType(
      *             mediaType="multipart/form-data",
      *             @OA\Schema(
      *                 @OA\Property(property="email", type="string", example="john@example.com"),
-     *                 @OA\Property(property="password", type="string", example="password123"),
+     *                 @OA\Property(property="password", type="string", example="123456789"),
      *             )
      *         )
      *     ),
@@ -104,6 +115,7 @@ class AuthController extends Controller
      * @OA\Post(
      *     path="/api/logout",
      *     summary="Logout user and revoke all tokens",
+     *     tags={"Auth Controller"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Response(
      *         response=200,

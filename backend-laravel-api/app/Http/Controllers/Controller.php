@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 /**
  * @OA\Info(
- *     title="Nombre de tu API",
+ *     title="Receptarium  API",
  *     version="1.0.0",
- *     description="Descripción de tu API",
- *     @OA\Contact(
- *         email="tu@email.com",
- *         name="Tu Nombre"
+ *    
+ *      @OA\Contact(
+ *         email="contacto@david-pr.com",
+ *         name="David Pérez Romero"
  *     ),
  *     @OA\License(
  *         name="Licencia",
