@@ -1,27 +1,27 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
 # dependencies
-fontend-react-native/node_modules/
+node_modules/
 
 # Expo
-fontend-react-native/.expo/
-fontend-react-native/dist/
-fontend-react-native/web-build/
+.expo/
+dist/
+web-build/
 
 # Native
-*fontend-react-native/.orig.*
-*fontend-react-native/.jks
-*fontend-react-native/.p8
-*fontend-react-native/.p12
-*fontend-react-native/.key
-*fontend-react-native/.mobileprovision
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
 
 
 # Metro
-fontend-react-native/.metro-health-check*
+.metro-health-check*
 
-fontend-react-native/firebaseConfig.js
-fontend-react-native/google-services.json
+firebaseConfig.js
+google-services.json
 
 # debug
 npm-debug.*
@@ -33,7 +33,7 @@ yarn-error.*
 *.pem
 
 # local env files
-fontend-react-native/.env*.local
+.env*.local
 
 # typescript
 *.tsbuildinfo
