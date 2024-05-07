@@ -8,15 +8,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/DavidPrDev/receptarium1.0">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="img/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Receptarium</h3>
-
-  <p align="center">
-  <a href="https://github.com/DavidPrDev/receptarium1.0">
-    Visitar web 
-  </a>
+<p align="center">
+    <img src="img/WhatsApp-Image3.jpeg" alt="Texto alternativo de la imagen" width="150" height="300" style="margin-right: 20px;">
+    <img src="img/WhatsApp-Image1.jpeg" alt="Texto alternativo de la imagen" width="150" height="300" >
 </p>
 </div>
 
