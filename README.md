@@ -21,7 +21,7 @@
     <li>
       <a href="#Sobre el proyecto">Sobre el proyecto</a>
       <ul>
-        <li><a href="#Tecnologías empleadas">Tecnologías</a></li>
+        <li><a href="#Tecnologías-empleadas">Tecnologías</a></li>
       </ul>
     </li>
     <li>
@@ -30,14 +30,8 @@
         <li><a href="#Prerrequisitos">Prerrequisitos</a></li>
         <li><a href="#Backend"> Instalacion Backend </a>
             <ul> 
-                <li><a href="#Caracteristicas Api">Caracteristicas</a></li>
-                <li><a href="#Documentación Swagger">Documentación Swagger</a></li>
-            </ul>
-        </li>
-          <li><a href="#Instalación">Frontend</a>
-            <ul> 
-                <li><a href="#roadmap">Instalación</a></li>
-                <li><a href="#usage">Documentación </a></li>
+                <li><a href="#Caracteristicas-Api">Caracteristicas</a></li>
+                <li><a href="#Documentación-Swagger">Documentación Swagger</a></li>
             </ul>
         </li>
       </ul>
