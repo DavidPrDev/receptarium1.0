@@ -19,7 +19,7 @@
   <summary>Contenido de la aplicación</summary>
   <ol>
     <li>
-      <a href="#Sobre el proyecto">Sobre el proyecto</a>
+      <a href="#Sobre-el-proyecto">Sobre el proyecto</a>
       <ul>
         <li><a href="#Tecnologías-empleadas">Tecnologías</a></li>
       </ul>
